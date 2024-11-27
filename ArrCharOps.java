@@ -7,6 +7,11 @@ public class ArrCharOps {
         String str = "clearly";
         char[] arr1 = {'c','l','e','a','r','l','y'};
         char[] arr2 = {'U','n','d','e','r','s','t', 'o', 'o', 'd'};
+        char [] arr3 = {'a'};
+        char [] arr4 = {'l','e','m','o','n'};
+        char[] arr5 = "You are a wizard Harry.".toCharArray();
+        char [] empty = {};
+
         System.out.println(str);  // Prints the string
         println(arr1);            // Prints an array of characters
         System.out.println(charAt(arr1,2));      
@@ -26,6 +31,16 @@ public class ArrCharOps {
         System.out.println(compareTo("Zoo", "zoo"));
         System.out.println(hashCode(arr1));
         System.out.println(hashCode(arr2));
+        System.out.println(hashCode(arr3));
+        System.out.println(hashCode(arr4));
+        System.out.println(indexOf(arr5, 'w'));
+        System.out.println(indexOf(arr5, 'w', 5));
+        System.out.println(indexOf(arr5, 'w' , 12));
+        System.out.println(indexOf(arr5, 'g'));
+        System.out.println(indexOf(empty, 'w'));
+        System.out.println(lastIndexOf(arr5, 'r'));
+        System.out.println(lastIndexOf(arr5, 'B'));
+        
     }
 
     /** Prints the given array of characters, and moves the cursor to the next line.
@@ -74,6 +89,9 @@ public class ArrCharOps {
         
         String str = new String(arr);
         str = str.substring(fromIndex);
+        if (str.indexOf(ch) == -1) {
+            return -1;
+        }
         return (str.indexOf(ch) + fromIndex);
         
     }
@@ -89,8 +107,10 @@ public class ArrCharOps {
         arrRev [i] = arr [n - i - 1];
         }
         String rev = new String(arrRev);
-
-        return (rev.length() - 1 - rev.indexOf(ch));
+        if (rev.indexOf(ch) == -1) {
+            return -1;
+        }
+        return (rev.length() - rev.indexOf(ch) - 1);
     }
 
     /* Returns an array which is the concatanation of the two given arrays.
@@ -130,11 +150,14 @@ public class ArrCharOps {
      */
     public static long hashCode(char[] arr) {
         // Replace the following statement with your code
-        int n = arr.length;
+        if (arr == null) {
+            return 0;
+        }
+        double n = arr.length;
         long sum = 0;
         for (int i = 0; i < n; i++){
-            long num = arr [i] * 7 ^ (n - 1);
-            sum += num;
+            sum += arr [i] * Math.pow(7 , n - 1 - i);
+           
         }
         return sum;
     }
