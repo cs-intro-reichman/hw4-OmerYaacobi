@@ -11,11 +11,11 @@ public class Primes {
                 System.out.println(i);
                 count ++;
             } else { 
-                int div = i -1;
+                int div = 2;
             while (i % div != 0) {
-                div --;
+                div ++;
                
-                if (div == 1) {
+                if (div > i/2) {
                     count ++;
                     System.out.println(i);
                     break;
